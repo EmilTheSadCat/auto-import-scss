@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+
+const util = require('util');
+const fs = require('fs');
+const path = require('path');
+
+
+
+// const pathToFiles = process.cwd();
+const pathToFiles = path.join(__dirname, '..', 'mock-folder' );
+// console.log(__dirname);
+
+
+console.log(pathToFiles);
+console.log(fs.readdirSync(pathToFiles));
