@@ -8,8 +8,26 @@ const path = require('path');
 
 // const pathToFiles = process.cwd();
 const pathToFiles = path.join(__dirname, '..', 'mock-folder' );
-// console.log(__dirname);
+const readDir = (pathToFile) =>  fs.readdirSync(pathToFile);
+
+let mainFolder;
 
 
-console.log(pathToFiles);
-console.log(fs.readdirSync(pathToFiles));
+function searchForMainFolder(input) {
+    const folder = readDir(input);
+    if (folder.includes('main.scss')) {
+        mainFolder = input;
+        return;
+    } else {
+        let foldersNames = folder.filter((str) => !str.includes('.'))
+        for (let i = 0; i < foldersNames.length; i++) {
+            const newPath = path.join(input, foldersNames[i]);
+            searchForMainFolder(newPath);
+        }
+    }
+
+
+};
+
+searchForMainFolder(pathToFiles);
+console.log(mainFolder);
