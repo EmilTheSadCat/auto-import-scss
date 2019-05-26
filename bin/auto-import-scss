@@ -9,9 +9,19 @@ const path = require('path');
 // const pathToFiles = process.cwd();
 const pathToFiles = path.join(__dirname, '..', 'mock-folder' );
 const readDir = (pathToFile) =>  fs.readdirSync(pathToFile);
+const writeFile = util.promisify(fs.writeFile);
 
+
+const scssRegex = /^_.*scss$/gm;
 let mainFolder;
+let scssFiles = [];
 
+searchForMainFolder(pathToFiles);
+scanForScssFiles(mainFolder);
+
+console.log(scssFiles);
+
+writeMainScss(mainFolder);
 
 function searchForMainFolder(input) {
     const folder = readDir(input);
@@ -25,9 +35,33 @@ function searchForMainFolder(input) {
             searchForMainFolder(newPath);
         }
     }
-
-
+};
+function pushToScssFiles(inputFolder, inputPath){
+    inputFolder.forEach(val => {
+        if(val.match(scssRegex)) {
+            const newPath = path.join(inputPath, val);
+            scssFiles.push(newPath);
+        }
+    })
 };
 
-searchForMainFolder(pathToFiles);
-console.log(mainFolder);
+function scanForScssFiles(inputPath) {
+    const folder = readDir(inputPath);
+    pushToScssFiles(folder, inputPath);
+    let foldersNames = folder.filter((str) => !str.includes('.'))
+    if(foldersNames.length === 0) {
+        return;
+    } else {
+        for (let i = 0; i < foldersNames.length; i++) {
+            const newPath = path.join(inputPath, foldersNames[i]);
+            scanForScssFiles(newPath);
+        }
+    }
+
+}
+
+
+function writeMainScss(inputPath, data) {
+    const newPath = path.join(inputPath, 'main.scss');
+    writeFile(newPath, data, 'utf-8').then(()=> console.log('Success')).catch(err => console.log(err));
+}
