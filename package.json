@@ -1,11 +1,11 @@
 {
-  "name": "@emilthesadcat/auto-import-scss",
+  "name": "@emilthesadcat/import-scss",
   "version": "1.0.0",
   "description": "Tool which imports new scss modules to your main scss file.",
-  "main": "auto-import-scss",
+  "main": "import-scss",
   "bin": {
-    "@emilthesadcat/auto-import-scss": "bin/auto-import-scss",
-    "auto-import-scss": "bin/auto-import-scss"
+    "@emilthesadcat/import-scss": "bin/import-scss",
+    "import-scss": "bin/import-scss"
   },
   "publishConfig": {
     "access": "public"
