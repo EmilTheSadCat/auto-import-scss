@@ -6,10 +6,12 @@ const path = require('path');
 
 
 
-// const pathToFiles = process.cwd();
-const pathToFiles = path.join(__dirname, '..', 'mock-folder' );
+const pathToFiles = process.cwd();
+
+
 const readDir = (pathToFile) =>  fs.readdirSync(pathToFile);
 const writeFile = util.promisify(fs.writeFile);
+const isDirectory = (inputPath, str) => fs.statSync(path.join(inputPath, str)).isDirectory();
 
 
 const scssRegex = /^_.*scss$/gm;
@@ -31,7 +33,7 @@ function searchForMainFolder(input) {
         mainFolder = input;
         return;
     } else {
-        let foldersNames = folder.filter((str) => !str.includes('.'))
+        let foldersNames = folder.filter((str) => isDirectory(input, str))
         for (let i = 0; i < foldersNames.length; i++) {
             const newPath = path.join(input, foldersNames[i]);
             searchForMainFolder(newPath);
@@ -50,7 +52,7 @@ function pushToScssFiles(inputFolder, inputPath){
 function scanForScssFiles(inputPath) {
     const folder = readDir(inputPath);
     pushToScssFiles(folder, inputPath);
-    let foldersNames = folder.filter((str) => !str.includes('.'))
+    let foldersNames = folder.filter((str) => isDirectory(inputPath, str))
     if(foldersNames.length === 0) {
         return;
     } else {
