@@ -1,16 +1,17 @@
 {
-  "name": "@emilthesadcat/import-scss",
-  "version": "1.0.0",
+  "name": "import-scss",
+  "version": "0.1.0",
+  "author": "Emil Litwiniec",
   "description": "Tool which imports new scss modules to your main scss file.",
-  "main": "import-scss",
+  "main": "bin/import-scss",
+  "license": "ISC",
   "bin": {
     "@emilthesadcat/import-scss": "bin/import-scss",
     "import-scss": "bin/import-scss"
-  },
+  },  
   "publishConfig": {
     "access": "public"
   },
-  "author": "Emil Litwiniec",
-  "license": "ISC",
-  "dependencies": {}
+  "dependencies": {
+  }
 }
