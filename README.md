@@ -1,4 +1,5 @@
 
+![version](https://img.shields.io/github/package-json/v/EmilTheSadCat/import-scss)
 # Import-scss
 
 Forget about adding new import to the main scss file whenever you create new module. Import-scss will do it for you.
