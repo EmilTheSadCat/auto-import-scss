@@ -1,6 +1,6 @@
 {
   "name": "import-scss",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Emil Litwiniec",
   "description": "Tool which imports new scss modules to your main scss file.",
   "main": "bin/import-scss",
