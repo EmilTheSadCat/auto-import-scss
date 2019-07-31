@@ -83,7 +83,7 @@ function createTextInput(arr) {
 
     for(let i = 0; i < paths.length; i++) {
         if(paths[i].charAt(0) === "/") {
-            paths[i] = paths[i].spice(1);
+            paths[i] = paths[i].slice(1);
         }
         data += `
 @import "${paths[i]}";`;
