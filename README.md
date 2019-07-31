@@ -23,6 +23,7 @@ npm run import-scss
 The script will be called once and it will update all imports in your main.scss file.</br>
 It looks for a folder where your main.scss file is placed.
 From there and beyond it searches for any _*.scss file. 
+Keep your variables in _variables.scss.
 
 ##### Running import-scss in watch mode
 Import-scss is a really small package and it doesn't have functionality to observe files and re-run on it's own. </br>
